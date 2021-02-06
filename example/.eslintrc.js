@@ -9,8 +9,8 @@ module.exports = {
     'prettier',
     'prettier/@typescript-eslint',
     'prettier/react',
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
   ],
   plugins: ['react', '@typescript-eslint', 'jest'],
   env: {
@@ -40,13 +40,25 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
-    'no-multiple-empty-lines': ['warn', { max: 1, maxEOF: 1 }],
+    'no-multiple-empty-lines': [
+      'warn',
+      {
+        max: 1,
+        maxEOF: 1,
+      },
+    ],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     'import/prefer-default-export': 'off',
     'newline-before-return': ['warn'],
-    indent: ['error', 2, { SwitchCase: 1 }],
+    indent: [
+      'error',
+      2,
+      {
+        SwitchCase: 1,
+      },
+    ],
     'no-multi-spaces': ['warn'],
     'max-len': [
       'warn',
@@ -69,7 +81,12 @@ module.exports = {
     'no-var': ['warn'],
     'no-unused-vars': ['warn'],
     'prefer-const': ['warn'],
-    'no-plusplus': ['warn', { allowForLoopAfterthoughts: true }],
+    'no-plusplus': [
+      'warn',
+      {
+        allowForLoopAfterthoughts: true,
+      },
+    ],
     'no-shadow': [
       2,
       {
@@ -115,11 +132,20 @@ module.exports = {
     'guard-for-in': ['warn'],
     'dot-notation': ['warn'],
     'no-unreachable': ['warn'],
-    'newline-per-chained-call': ['warn', { ignoreChainWithDepth: 2 }],
+    'newline-per-chained-call': [
+      'warn',
+      {
+        ignoreChainWithDepth: 2,
+      },
+    ],
     quotes: ['warn', 'single'],
     'padding-line-between-statements': [
       'warn',
-      { blankLine: 'always', prev: '*', next: ['return', 'block-like'] },
+      {
+        blankLine: 'always',
+        prev: '*',
+        next: ['return', 'block-like'],
+      },
       {
         blankLine: 'always',
         prev: 'block-like',

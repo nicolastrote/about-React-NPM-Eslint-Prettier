@@ -26,6 +26,8 @@ Here I am testing the last version of create-react-app and display a proper path
   - [Resolving The Eslint Errors](#resolving-the-eslint-errors)
   - [VSCode Does Not Display Eslint/Prettier Errors](#vscode-does-not-display-eslintprettier-errors)
   - [HUSKY](#husky)
+  - [How to Debug the Code](#how-to-debug-the-code)
+  - [SCSS](#scss)
   
 ## NodeJS Install & Upgrade
 
@@ -41,7 +43,7 @@ For using react-create-app, latest LTS version of NodeJS is recommended by this 
 Some packets could stay in your global and need to be delete for no conflicts.
 List all global packets : 
 
-```text
+```shell
 npm list -g --depth 0
 
 // My minimum of packages is :
@@ -55,22 +57,22 @@ C:\Users\x\AppData\Roaming\npm
 ├── react-native-cli@2.0.1
 ├── yarn-check@0.0.3
 └── yarn@1.22.10
-```text
+```shell
 and remove unwanted with:
 
-```text
+```shell
 npm remove -g [package]
 ```
 
 ## NPM Upgrade
 
 Upgrade of npm
-```text
+```shell
 npm install -g npm@latest
 ```
 Validate that all global packages are update:
 
-``` text
+```shell
 npm i -g npm-check && npm-check -g -y
 ```
 ` npm --version` reply `7.5.2`
@@ -78,7 +80,7 @@ npm i -g npm-check && npm-check -g -y
 ## NPX Upgrade
 
 Upgrade of npx
-```text
+```shell
 npm install -g npx --force
 ```
 
@@ -88,35 +90,35 @@ npm install -g npx --force
 
 Now we can testing if create-react-app is working properly with typescript, eslint and prettier
 
-```
+```shell
 npx create-react-app web-app --template typescript
 ```
 
 - first test: 
-```
+```shell
 cd web-app && yarn start
 ```
 
 ## Eslint
 Eslint installation:
-```
+```shell
 yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-airbnb-typescript eslint-plugin-jest
 ```
 
 Install of Airbnb config
-```
+```shell
 npx install-peerdeps --dev eslint-config-airbnb
 ```
 
 ## Prettier
 Prettier installation:
-```
+```shell
 yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 ```
 
 ## Eslint Config File
 Create .eslintrc.js file :
-```
+```JS
 module.exports = {
   root: true,
   extends: [
@@ -278,18 +280,20 @@ nb: for more info read [here](https://github.com/typescript-eslint/typescript-es
 
 ## Eslint Ignore File
 Create .eslintignore file :
-```
+```s 
 # don't ever lint node_modules
 node_modules
 # don't lint build output (make sure it's set to your correct build folder name)
 dist
 # don't lint nyc coverage output
 coverage
+# don't lint .eslintrc.js
+.eslintrc.js
 ```
 
 ## Eslint & Prettier Scripts
 Add scripts to your package.json file:
-```
+```JSON
 "scripts": {
   "format": "prettier --write src/**/*.ts{,x}",
   "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
@@ -298,7 +302,7 @@ Add scripts to your package.json file:
 
 ## VSCode configuration
 In your json settings file:
-```
+```JSON
 {
   "files.associations": {
     "*.jsx": "javascriptreact"
@@ -308,9 +312,9 @@ In your json settings file:
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true, /* This allow fix for eslint + prettier */
     "source.fixAll": true,
-    "source.organizeImports": true /* Can be turned on */
+    "source.organizeImports": false /* Can be turned on */
   },
-  "json.format.enable": false,
+  "json.format.enable": true,
   "files.autoSave": "onFocusChange",
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
@@ -327,7 +331,7 @@ In your json settings file:
 
 ## Test
 Launch the web app
-```
+```shell
 λ yarn start
 yarn run v1.22.10
 $ react-scripts start
@@ -347,7 +351,7 @@ However, a different version of eslint was detected higher up in the tree:
 
 ## Resolving The Eslint Errors
 The error pop, so we can use yarn-check to solve conflicts:
-```
+```shell
 yarn add yarn-check -g && yarn-check -u
 ...
 [yarn-check] Update complete!
@@ -365,7 +369,9 @@ Error is gone ;-)
 Husky can prevent bad git commit, git push and more 🐶 woof!
 > NOTE: to get ride of warning: LF will be replaced by CRLF in
 
-`yarn add -D husky lint-staged`
+```shell
+yarn add -D husky lint-staged
+```
 
 - Add in your package.json some hooks and scripts : 
 ```JSON
@@ -383,5 +389,37 @@ Husky can prevent bad git commit, git push and more 🐶 woof!
 },
 ```
 
+## How to Debug the Code
 
+- Install the plugin: Debugger for Chrome msjsdiag.debugger-for-chrome
+- In VSCode clic on the icon for debugging
+- Click on the link "create a launch.json file"
+- Select "Chome (Preview)"
+
+It create a launch.json file under .vscode to parameter debugging:
+```JSON
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:3000/",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
+```
+- change url for http://localhost:3000/
+- go on the App.tsx file, for example, put a break point and launch debug with F5
+
+## SCSS
+
+- `yarn add sass classnames`
+
+> ⚠ NOTE : `yarn add node-sass` will lead to bad issues at time: [https://github.com/webpack-contrib/sass-loader/issues/898](issue)
+
+- Rename src/App.css to src/App.scss and update src/App.tsx to import src/App.scss
+- Rename src/index.css to src/index.scss and update src/Dashboard.tsx to import src/index.scss
 
