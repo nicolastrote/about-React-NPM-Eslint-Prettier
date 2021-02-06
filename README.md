@@ -25,6 +25,7 @@ Here I am testing the last version of create-react-app and display a proper path
   - [Test](#test)
   - [Resolving The Eslint Errors](#resolving-the-eslint-errors)
   - [VSCode Does Not Display Eslint/Prettier Errors](#vscode-does-not-display-eslintprettier-errors)
+  - [HUSKY](#husky)
   
 ## NodeJS Install & Upgrade
 
@@ -358,6 +359,29 @@ Error is gone ;-)
 
 ## VSCode Does Not Display Eslint/Prettier Errors
 > NOTE: if eslint doesn't display errors in VSCode, try this to force the display: `yarn eslint . --ext .js,.jsx,.ts,.tsx`
+
+## HUSKY
+
+Husky can prevent bad git commit, git push and more 🐶 woof!
+> NOTE: to get ride of warning: LF will be replaced by CRLF in
+
+`yarn add -D husky lint-staged`
+
+- Add in your package.json some hooks and scripts : 
+```JSON
+"lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint:fix",
+      "yarn format"
+    ]
+  },
+"husky": {
+  "hooks": {
+    "pre-commit": "lint-staged",
+    "pre-push": "lint-staged && yarn run test-ci"
+  }
+},
+```
 
 
 
