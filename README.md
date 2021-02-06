@@ -26,8 +26,8 @@ Here I am testing the last version of create-react-app and display a proper path
   - [Resolving The Eslint Errors](#resolving-the-eslint-errors)
   - [VSCode Does Not Display Eslint/Prettier Errors](#vscode-does-not-display-eslintprettier-errors)
   - [HUSKY](#husky)
-  - [How to Debug the Code](#how-to-debug-the-code)
   - [SCSS](#scss)
+  - [How to Debug the Code](#how-to-debug-the-code)
   
 ## NodeJS Install & Upgrade
 
@@ -312,7 +312,7 @@ In your json settings file:
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true, /* This allow fix for eslint + prettier */
     "source.fixAll": true,
-    "source.organizeImports": false /* Can be turned on */
+    "source.organizeImports": false /* fix VSCode & Eslint conflict at save */
   },
   "json.format.enable": true,
   "files.autoSave": "onFocusChange",
@@ -362,7 +362,8 @@ yarn add yarn-check -g && yarn-check -u
 Error is gone ;-)
 
 ## VSCode Does Not Display Eslint/Prettier Errors
-> NOTE: if eslint doesn't display errors in VSCode, try this to force the display: `yarn eslint . --ext .js,.jsx,.ts,.tsx`
+> NOTE: if eslint doesn't display errors in VSCode, try this to force the display: 
+> `yarn eslint . --ext .js,.jsx,.ts,.tsx`
 
 ## HUSKY
 
@@ -389,6 +390,15 @@ yarn add -D husky lint-staged
 },
 ```
 
+## SCSS
+
+- `yarn add sass classnames`
+
+> ⚠ NOTE : `yarn add node-sass` will lead to bad issues at time: [https://github.com/webpack-contrib/sass-loader/issues/898](issue)
+
+- Rename src/App.css to src/App.scss and update src/App.tsx to import src/App.scss
+- Rename src/index.css to src/index.scss and update src/Dashboard.tsx to import src/index.scss
+
 ## How to Debug the Code
 
 - Install the plugin: Debugger for Chrome msjsdiag.debugger-for-chrome
@@ -413,13 +423,3 @@ It create a launch.json file under .vscode to parameter debugging:
 ```
 - change url for http://localhost:3000/
 - go on the App.tsx file, for example, put a break point and launch debug with F5
-
-## SCSS
-
-- `yarn add sass classnames`
-
-> ⚠ NOTE : `yarn add node-sass` will lead to bad issues at time: [https://github.com/webpack-contrib/sass-loader/issues/898](issue)
-
-- Rename src/App.css to src/App.scss and update src/App.tsx to import src/App.scss
-- Rename src/index.css to src/index.scss and update src/Dashboard.tsx to import src/index.scss
-
